@@ -91,7 +91,7 @@
       jetbrains.idea-ultimate
    
       spotify
-      haskellPackages.github
+      github-desktop
  ];
     shell = pkgs.zsh;
   };
