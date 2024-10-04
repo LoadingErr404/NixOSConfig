@@ -61,6 +61,8 @@
       xkb.layout = "cz"; 
       xkb.options = "eurosign:e,caps:escape";
     };
+    dbus.packages = [ pkgs.blueman ];
+    blueman.enable = true;
   };
 
 
