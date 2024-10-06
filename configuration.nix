@@ -71,7 +71,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" "nixos" ]; # Enable ‘sudo’ for the user.
     openssh.authorizedKeys.keys = [
-      "ssh-rsa AAAAB3Nz....6OWM= user" # content of authorized_keys file
+      # "ssh-rsa AAAAB3Nz....6OWM= user" # content of authorized_keys file
     ];
     packages = with pkgs; [
       firefox
@@ -123,6 +123,7 @@
     alsa-tools
     blueman 
     gnomeExtensions.duckduckgo-search-provider
+    openssh
  ];
 
   hardware.bluetooth.enable = true;
