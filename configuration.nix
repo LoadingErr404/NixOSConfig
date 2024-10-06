@@ -94,6 +94,8 @@
    
       spotify
       github-desktop
+      gh
+      git-credential-manager
  ];
     shell = pkgs.zsh;
   };
@@ -120,7 +122,6 @@
     pavucontrol
     alsa-tools
     blueman 
-    spotify
     gnomeExtensions.duckduckgo-search-provider
  ];
 
