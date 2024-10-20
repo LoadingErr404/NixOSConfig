@@ -5,7 +5,10 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports =
+     boot.blacklistedKernelModules = lib.mkDefault ["i915"];
+     boot.kernelParams = lib.mkDefault ["i915.modeset=0"];
+
+imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
        <catppuccin/modules/nixos>
@@ -57,7 +60,7 @@
     xserver = {
       enable = true;
       desktopManager.plasma5.enable = true;
-
+      # videoDrivers = ["nvidia"];
       xkb.layout = "cz"; 
       xkb.options = "eurosign:e,caps:escape";
     };
@@ -96,7 +99,11 @@
       github-desktop
       gh
       git-credential-manager
- ];
+      kdePackages.wacomtablet
+
+      gimp-with-plugins
+      onlyoffice-bin 
+];
     shell = pkgs.zsh;
   };
 
@@ -111,7 +118,7 @@
     zsh
     pfetch-rs
     sselp
-    wacomtablet
+#    wacomtablet
 
     gcc
     rustc
@@ -124,10 +131,26 @@
     blueman 
     gnomeExtensions.duckduckgo-search-provider
     openssh
+    wineWowPackages.wayland
+    
+    xf86_input_wacom
+    libwacom
+    unzip
+
  ];
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
+  # hardware.opengl = {
+  #   enable = true;
+  # };
+
+  # hardware.nvidia = {
+  #   modesetting.enable = true;
+  #   open = false;
+  #   nvidiaSettings = true;
+  #   package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # };
 
   programs = {
     steam = {
