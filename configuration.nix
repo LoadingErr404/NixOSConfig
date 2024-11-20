@@ -1,12 +1,9 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, ... }:
 
 {
-     boot.blacklistedKernelModules = lib.mkDefault ["i915"];
-     boot.kernelParams = lib.mkDefault ["i915.modeset=0"];
+     # boot.kernelParams = ["amdgpu.backlight=0" "acpi_backlight=none"];
 
 imports =
     [ # Include the results of the hardware scan.
@@ -93,6 +90,8 @@ imports =
 
       jetbrains.clion
       jetbrains.rider
+      dotnetCorePackages.dotnet_8.vmr
+      mono5
       jetbrains.idea-ultimate
    
       spotify
@@ -103,6 +102,7 @@ imports =
 
       gimp-with-plugins
       onlyoffice-bin 
+      vscode
 ];
     shell = pkgs.zsh;
   };
@@ -129,18 +129,31 @@ imports =
     pavucontrol
     alsa-tools
     blueman 
-    gnomeExtensions.duckduckgo-search-provider
+   # gnomeExtensions.duckduckgo-search-provider
     openssh
     wineWowPackages.wayland
-    
+    winetricks 
     xf86_input_wacom
     libwacom
     unzip
+    # xorg.xbacklight
+#    haskellPackages.msi-kb-backlit
+    brightnessctl
+    bluez
+];
 
- ];
-
-  hardware.bluetooth.enable = true;
-  hardware.bluetooth.powerOnBoot = true;
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+        General = {
+	    Enable = "Source,Sink,Media,Socket";
+	    AutoEnable = true;
+	    ControllerMode = "bredr";
+	};
+    };
+  };
+  
   # hardware.opengl = {
   #   enable = true;
   # };
