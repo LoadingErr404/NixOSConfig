@@ -103,9 +103,13 @@ imports =
       gimp-with-plugins
       onlyoffice-bin 
       vscode
+
+      factorio
+      factorio-space-age
 ];
     shell = pkgs.zsh;
   };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
